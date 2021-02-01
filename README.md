@@ -1,5 +1,5 @@
 # Suricata_JQ
-## The following is some helpful JSON parsing commands to read Suricata JSON formatted alert files
+## The following are some helpful JSON parsing commands to read Suricata JSON formatted alert files
 
 Search for alerts with a specific signature.  Print out the Source and destination IP along with the alert signature
 <pre><code>echo -e "  Count\tSourceIP\tDestIP\t\tAlertSignature\n" && cat eve-2021-01-27-03:11.json | jq -j 'select(.alert.signature == "ET USER_AGENTS WinRM User Agent Detected - Possible Lateral Movement") | .src_ip, "\t", .dest_ip, "\t", .alert.signature, "\n"' | sort | uniq -c | sort -nr</code></pre>
