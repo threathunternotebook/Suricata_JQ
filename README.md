@@ -1,13 +1,13 @@
 # Suricata_JQ
 ## The following are some helpful JSON parsing commands to read Suricata JSON formatted alert files
 
-Search for alerts with a specific signature.  Print out the Source and destination IP along with the alert signature
+Search for alerts with a specific signature.  Print out the Source and destination IP along with the alert signature along with a header.
 <pre><code>echo -e "  Count\tSourceIP\tDestIP\t\tAlertSignature\n" && cat eve-2020-01-27-03:11.json | jq -j 'select(.alert.signature == "ET USER_AGENTS WinRM User Agent Detected - Possible Lateral Movement") | .src_ip, "\t", .dest_ip, "\t", .alert.signature, "\n"' | sort | uniq -c | sort -nr</code></pre>
 
-Search for all alerts with a severity of 1.  Print out the Source and destination IP along with the alert signature
+Search for all alerts with a severity of 1.  Print out the Source and destination IP along with the alert signature along with a header.
 <pre><code>echo -e "  Count\tSourceIP\tDestIP\t\tAlertSignature\n" && cat eve-2020-01-27-03:11.json | jq -j 'select(.alert.severity == 1) | .src_ip, "\t", .dest_ip, "\t", .alert.signature, "\n"' | sort | uniq -c | sort -nr</code></pre>
 
-Search for all alerts with a signature severity of "Major".  Print out the Source and destination IP address along with the alert signature # and severity.
+Search for all alerts with a signature severity of "Major".  Print out the Source and destination IP address along with the alert signature # and severity along with a header.
 <pre><code>echo -e "  Count\tSourceIP\tDestIP\t\tAlertSignature\t\tSignatureSeverity\n" && cat eve-2020-01-27-03:11.json | jq -j 'select(.alert.metadata.signature_severity[0] == "Major") | .src_ip, "\t", .dest_ip, "\t", .alert.signature, "\t", .alert.metadata.signature_severity[0], "\n"' | sort | uniq -c | sort -nr</code></pre>
 
 Print out the payload of a specific signature alert
